@@ -6,10 +6,9 @@ import urllib.parse
 
 from flox import Flox, ICON_APP_ERROR
 
-# from plexapi.myplex import MyPlexAccount
-import requests
 from plexapi.server import PlexServer
 from plexapi.utils import download
+
 
 class Plexy(Flox):
 
@@ -24,7 +23,6 @@ class Plexy(Flox):
     def query(self, query):
         self._connect_plex()
         q = query.lower()
-        self.logger.debug(dir(self._plex.myPlexAccount().resources()))
         if not self.settings.get('token', None):
             self.add_item(
                 title=f'Token: {query}',
