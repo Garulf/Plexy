@@ -25,7 +25,7 @@ Plexy will ask you for you servers URL and token at start-up.
 | baseurl       | `baseurl` must include `http://` or `https://` e.g. `http://127.0.0.1:32400`                                                                 |
 | token         | If you don't know how to retrieve your token follow this [guide](https://support.plex.tv/articles/201638786-plex-media-server-url-commands/) |
 
-If your login fails you can reset all login information by pressing `Shift`+`Enter`. This brings up Plexy's context menu, you can reset your login by selecting "Reset Login".
+If your login fails you can reset all login information by pressing <kbd>Shift</kbd>+<kbd>Enter</kbd>. This brings up Plexy's context menu, you can reset your login by selecting "Reset Login".
 
 
 # How-To:
