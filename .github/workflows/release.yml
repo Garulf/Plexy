@@ -1,51 +1,73 @@
-name: Publish Release
+name: Release
 
 on:
-  workflow_dispatch:
   push:
-    branches: [ main ]
-    paths-ignore: 
-      - .github/workflows/*
-      - README.md
-      - assets/*
+    tags:
+      - 'v*'
+
 
 jobs:
-  publish:
+  release:
+    name: Package Release
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: [3.9]
     steps:
-      - uses: actions/checkout@v2
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v2
-        with:
-          python-version: ${{ matrix.python-version }}
-      - name: get version
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Get release version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV
+      - name: Get current version in file
         id: version
         uses: notiz-dev/github-action-json-property@release
         with: 
           path: 'plugin.json'
           prop_path: 'Version'
       - run: echo ${{steps.version.outputs.prop}}
-      - uses: actions/cache@v2
-        if: startsWith(runner.os, 'Linux')
+      - name: "Update plugin.json version to: ${{ env.VERSION }}"
+        if: ${{ steps.version.outputs.prop }} != ${{ env.VERSION }}
+        uses: jossef/action-set-json-field@v1
         with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
-      - name: Install dependencies
+          file: plugin.json
+          field: Version
+          value: ${{ env.VERSION }}
+      - name: Commit version change
+        if: ${{ steps.version.outputs.prop }} != ${{ env.VERSION }}
         run: |
-          python -m pip install --upgrade pip
-          pip install -r ./requirements.txt -t ./lib
-          mv -r ./lib/flox . && rm -r ./lib/Flox-*dist-info
-          zip -r Plexy.zip . -x '*.git*' -x 'demo.*' -x 'README.md' -x 'assets/*'
-      - name: Publish
-        if: success() && github.ref == 'refs/heads/main'
-        uses: softprops/action-gh-release@v1
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add ./plugin.json
+          git commit -m "bumping versioning ${{ env.VERSION }}"
+      - name: Push changes
+        if: ${{ steps.version.outputs.prop }} != ${{ env.VERSION }}
+        uses: ad-m/github-push-action@v0.6.0
+        continue-on-error: true
         with:
-          files: 'Plexy.zip'
-          tag_name: "v${{steps.version.outputs.prop}}"
+          branch: main
+          github_token: ${{ github.token }}
+      - name: Download dev build
+        uses: dsaltares/fetch-gh-release-asset@master
+        with:
+          repo: ${{ github.repository }}
+          version: "tags/dev"
+          file: "${{github.event.repository.name}}.zip"
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Unzip prelease & zip release
+        run: |
+          shopt -s extglob
+          rm -v -r !("plugin.json"|"${{github.event.repository.name}}.zip")
+          unzip -n "${{github.event.repository.name}}.zip"
+          rm -v "${{github.event.repository.name}}.zip"
+          zip -r "${{github.event.repository.name}}.zip" . -x '*.git*' -x 'demo.gif' -x 'README.md' -x 'assets/*'
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: false
+          title: "v${{ env.VERSION }}"
+          files: "./${{github.event.repository.name}}.zip"
+      - name: Remove dev build
+        if: ${{ success() }}
+        uses: dev-drprasad/delete-older-releases@v0.2.0
+        with:
+          delete_tag_pattern: dev
+          keep_latest: 0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
