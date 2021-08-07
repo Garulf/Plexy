@@ -1,12 +1,12 @@
 {
-  "ID":"32D9F15C38EE400EA7E3DF57DA15BFD5",
-  "ActionKeyword":"pl",
-  "Name":"Plexy",
-  "Description":"Search your Plex Library",
-  "Author":"Garulf",
-  "Version":"0.0.1",
-  "Language":"python",
-  "Website":"https://github.com/Garulf/plexy",
+  "ID": "32D9F15C38EE400EA7E3DF57DA15BFD5",
+  "ActionKeyword": "pl",
+  "Name": "Plexy",
+  "Description": "Search your Plex Library",
+  "Author": "Garulf",
+  "Version": "0.5.1",
+  "Language": "python",
+  "Website": "https://github.com/Garulf/plexy",
   "IcoPath": "./icons/plex.png",
-  "ExecuteFileName":"main.py"
+  "ExecuteFileName": "main.py"
 }
