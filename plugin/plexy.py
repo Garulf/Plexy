@@ -18,20 +18,28 @@ class Plexy(Flox):
     def _connect_plex(self):
         self._baseurl = self.settings.get('baseurl', None)
         self._token = self.settings.get('token', None)
-        self._plex = PlexServer(self._baseurl, self._token)
+        self._plex = PlexServer(self._baseurl, self._token, timeout=120)
 
     def query(self, query):
-        self._connect_plex()
         q = query.lower()
-        if not self.settings.get('token', None):
+        if not self.settings.get('baseurl', None):
             self.add_item(
-                title=f'Token: {query}',
-                subtitle='press ENTER to save Plex token',
-                method='set_token',
-                parameters=[query],
+                title=f'{query}',
+                subtitle='Please enter your Plex server\'s URL (e.g. http://127.0.0.1:32400).',
+                method='set_setting',
+                parameters=['baseurl', query],
+                hide=True
+            )
+        elif not self.settings.get('token', None):
+            self.add_item(
+                title=f'{query}',
+                subtitle='Please enter your Plex server token above.',
+                method='set_setting',
+                parameters=['token', query],
                 hide=True
             )
         else:
+            self._connect_plex()
             sections = self._plex.library.sections()
             for section in sections:
                 # ignore whitespace for section names
@@ -51,7 +59,7 @@ class Plexy(Flox):
                             title=title,
                             subtitle=item.summary.replace('\r', ' ').replace('\n', ''),
                             icon=icon,
-                            method='open',
+                            method='browser',
                             parameters=[self._plex._baseurl, self._plex.machineIdentifier, item.key],
                             context=[item.ratingKey]
                         )
@@ -83,12 +91,14 @@ class Plexy(Flox):
                 parameters=[client.title, key]
             )
 
-    def set_token(self, q):
-        self.settings['token'] = str(q)
+    def set_setting(self, setting, q):
+        self.settings[setting] = str(q)
         self.change_query(self.action_keyword + ' ', True)
 
+
     def reset_login(self):
-        self.settings['token'] = ''
+        self.settings['token'] = None
+        self.settings['baseurl'] = None
 
     def download_thumb(self, item):
         file_name = f"{item.ratingKey}.jpg"
@@ -116,10 +126,11 @@ class Plexy(Flox):
         client.playMedia(media, offset=offset)
 
 
-    def open(self, baseurl, machine, key):
+    def browser(self, baseurl, machine, key):
         key = key.replace('/', '%2F')
         url = f"{baseurl}/web/index.html#!/server/{machine}/details?key={key}"
         webbrowser.open(url)
+
 
 if __name__ == '__main__':
     Plexy()
