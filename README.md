@@ -4,7 +4,7 @@
 
 ### Flow Lancher:
 
-<strike>Simply type `pm install plexy` to have the plugin installed</strike> (Not yet available)
+Simply type `pm install plexy` to have the plugin installed
 
 ### Manual Installation:
 
