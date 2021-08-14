@@ -1,21 +1,17 @@
-MIT License
+                    DO WHATEVER YOU WANT License
+                     Version 0.94, October 2017
 
-Copyright (c) 2021 Garulf
+Copyright (c) 2017 Jade Thornton
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+Permission is hereby granted, without limitation, to use, copy, modify,
+sublicense and/or distribute this software for any purpose with or without fee,
+subject to only the following conditions:
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+0. This copyright notice and permission notice must appear in all copies
+1. That's it, just do whatever you want
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+This program is free software. The software is provided "as is" without any
+warranty whatsoever, to the extent permitted by applicable law. In no event
+shall the authors or copyright holders be liable for any claim, damages or
+other liability, wether in an action of contract, tort or otherwise, arising
+from, out of or in connection with the software or the use of the software.
