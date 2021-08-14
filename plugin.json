@@ -4,7 +4,7 @@
   "Name": "Plexy",
   "Description": "Search and cast your Plex Media Library",
   "Author": "Garulf",
-  "Version": "0.5.1",
+  "Version": "0.5.2",
   "Language": "python",
   "Website": "https://github.com/Garulf/plexy",
   "IcoPath": "./icons/plex.png",
