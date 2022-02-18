@@ -8,6 +8,7 @@ from flox import Flox, ICON_APP_ERROR
 
 from plexapi.server import PlexServer
 from plexapi.utils import download
+from plexapi.exceptions import BadRequest
 
 
 class Plexy(Flox):
@@ -52,6 +53,8 @@ class Plexy(Flox):
                         )
                     except AttributeError:
                         pass
+        except BadRequest:
+            pass
         if len(self._results) == 0:
             self.add_item(title="No Results Found!", icon=ICON_APP_ERROR, context="")
 
