@@ -76,6 +76,7 @@ class Plexy(Flox):
             self.add_item(
                 title=client.title,
                 subtitle=subtitle,
+                icon=self.icon,
                 method="play",
                 parameters=[client.title, key],
             )
