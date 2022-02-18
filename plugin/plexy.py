@@ -13,7 +13,6 @@ from requests.exceptions import ConnectionError
 
 
 class Plexy(Flox):
-
     def _connect_plex(self):
         self._baseurl = self.settings.get("baseurl", "https://localhost:32400")
         self._token = self.settings.get("token", "")
@@ -28,14 +27,14 @@ class Plexy(Flox):
             else:
                 method = self.open_settings_file
             self.add_item(
-                title='Error: Unable to connect to Plex server.',
-                subtitle='Please check your settings.',
+                title="Error: Unable to connect to Plex server.",
+                subtitle="Please check your settings.",
                 icon=ICON_APP_ERROR,
-                method=method
+                method=method,
             )
             return
         q = query.lower()
-        if q == '':
+        if q == "":
             self.on_deck()
             return
 
