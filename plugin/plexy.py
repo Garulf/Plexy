@@ -8,7 +8,8 @@ from flox import Flox, ICON_APP_ERROR
 
 from plexapi.server import PlexServer
 from plexapi.utils import download
-from plexapi.exceptions import BadRequest
+from plexapi.exceptions import BadRequest, Unauthorized
+from requests.exceptions import ConnectionError
 
 
 class Plexy(Flox):
@@ -19,7 +20,16 @@ class Plexy(Flox):
         self._plex = PlexServer(self._baseurl, self._token, timeout=120)
 
     def query(self, query):
-        self._connect_plex()
+        try:
+            self._connect_plex()
+        except (ConnectionError, Unauthorized):
+            self.add_item(
+                title='Error: Unable to connect to Plex server.',
+                subtitle='Please check your settings.',
+                icon=ICON_APP_ERROR,
+                method=self.open_setting_dialog
+            )
+            return
         q = query.lower()
         if q == '':
             self.on_deck()
