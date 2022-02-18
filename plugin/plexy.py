@@ -19,11 +19,12 @@ class Plexy(Flox):
         self._plex = PlexServer(self._baseurl, self._token, timeout=120)
 
     def query(self, query):
+        self._connect_plex()
         q = query.lower()
         if q == '':
             self.on_deck()
             return
-        self._connect_plex()
+
         sections = self._plex.library.sections()
         for section in sections:
             # ignore whitespace for section names
@@ -62,7 +63,6 @@ class Plexy(Flox):
                     pass
 
     def on_deck(self):
-        self._connect_plex()
         for item in self._plex.library.onDeck():
             self.media_item(item)
 
