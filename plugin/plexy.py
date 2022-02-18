@@ -11,12 +11,10 @@ from plexapi.utils import download
 
 
 class Plexy(Flox):
-    def __init__(self):
-        super().__init__()
 
     def _connect_plex(self):
-        self._baseurl = self.settings.get("baseurl", None)
-        self._token = self.settings.get("token", None)
+        self._baseurl = self.settings.get("baseurl", "https://localhost:32400")
+        self._token = self.settings.get("token", "")
         self._plex = PlexServer(self._baseurl, self._token, timeout=120)
 
     def query(self, query):
