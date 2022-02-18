@@ -60,11 +60,6 @@ class Plexy(Flox):
 
     def context_menu(self, data):
         key = data[0]
-        self.add_item(
-            title="Reset Login",
-            subtitle="Reset all user login information...",
-            method="reset_login",
-        )
         self._connect_plex()
         for client in self._plex.clients():
             subtitle = "Not Playing"
