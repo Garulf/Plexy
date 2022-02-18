@@ -4,7 +4,7 @@ import tempfile
 import webbrowser
 import urllib.parse
 
-from flox import Flox, ICON_APP_ERROR
+from flox import Flox, ICON_APP_ERROR, FLOW_API, WOX_API
 
 from plexapi.server import PlexServer
 from plexapi.utils import download
@@ -23,11 +23,15 @@ class Plexy(Flox):
         try:
             self._connect_plex()
         except (ConnectionError, Unauthorized):
+            if self.api == FLOW_API:
+                method = self.open_setting_dialog
+            else:
+                method = self.open_settings_file
             self.add_item(
                 title='Error: Unable to connect to Plex server.',
                 subtitle='Please check your settings.',
                 icon=ICON_APP_ERROR,
-                method=self.open_setting_dialog
+                method=method
             )
             return
         q = query.lower()
@@ -156,6 +160,9 @@ class Plexy(Flox):
         key = key.replace("/", "%2F")
         url = f"{baseurl}/web/index.html#!/server/{machine}/details?key={key}"
         webbrowser.open(url)
+
+    def open_settings_file(self):
+        os.startfile(self.settings_path)
 
 
 if __name__ == "__main__":
