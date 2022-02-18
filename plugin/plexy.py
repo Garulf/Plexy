@@ -21,36 +21,20 @@ class Plexy(Flox):
 
     def query(self, query):
         q = query.lower()
-        if not self.settings.get("baseurl", None):
-            self.add_item(
-                title=f"{query}",
-                subtitle="Please enter your Plex server's URL (e.g. http://127.0.0.1:32400).",
-                method="set_setting",
-                parameters=["baseurl", query],
-                hide=True,
-            )
-        elif not self.settings.get("token", None):
-            self.add_item(
-                title=f"{query}",
-                subtitle="Please enter your Plex server token above.",
-                method="set_setting",
-                parameters=["token", query],
-                hide=True,
-            )
+        self._connect_plex()
+        sections = self._plex.library.sections()
+        for section in sections:
+            # ignore whitespace for section names
+            if q.replace(" ", "").startswith(
+                f"{section.title.replace(' ', '').lower()}:"
+            ):
+                # remove section filter from query
+                q = q.split(":")[1]
+                search_section = section
+                break
         else:
-            self._connect_plex()
-            sections = self._plex.library.sections()
-            for section in sections:
-                # ignore whitespace for section names
-                if q.replace(" ", "").startswith(
-                    f"{section.title.replace(' ', '').lower()}:"
-                ):
-                    # remove section filter from query
-                    q = q.split(":")[1]
-                    search_section = section
-                    break
-            else:
-                search_section = self._plex
+            search_section = self._plex
+        try:
             for item in search_section.search(q):
                 if item.type != "tag":
                     try:
