@@ -49,12 +49,21 @@ class Plexy(Flox):
         self._connect_plex()
         for client in self._plex.clients():
             self.client_item(client, key)
-        self.add_item(
-            title="Mark Watched",
-            icon=self.icon,
-            method=self.mark_watched,
-            parameters=[key],
-        )
+        media = self._plex.fetchItem(key)
+        if media.isWatched:
+            self.add_item(
+                title="Mark Unwatched",
+                icon=self.icon,
+                method="mark_unwatched",
+                parameters=[key],
+            )
+        else:
+            self.add_item(
+                title="Mark Watched",
+                icon=self.icon,
+                method=self.mark_watched,
+                parameters=[key],
+            )
 
     def media_item(self, media):
         self.add_item(
@@ -127,6 +136,11 @@ class Plexy(Flox):
         self._connect_plex()
         media = self._plex.fetchItem(key)
         media.markWatched()
+
+    def mark_unwatched(self, key):
+        self._connect_plex()
+        media = self._plex.fetchItem(key)
+        media.markUnwatched()
 
     def browser(self, baseurl, machine, key):
         key = key.replace("/", "%2F")
