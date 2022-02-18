@@ -44,6 +44,12 @@ class Plexy(Flox):
         if len(self._results) == 0:
             self.add_item(title="No Results Found!", icon=ICON_APP_ERROR, context="")
 
+    def context_menu(self, data):
+        key = data[0]
+        self._connect_plex()
+        for client in self._plex.clients():
+            self.client_item(client, key)
+
     def media_item(self, media):
         self.add_item(
             title=media.title,
@@ -52,6 +58,18 @@ class Plexy(Flox):
             method="browser",
             parameters=[self._plex._baseurl, self._plex.machineIdentifier, media.key],
             context=[media.ratingKey],
+        )
+
+    def client_item(self, client, key):
+        subtitle = "Not Playing"
+        if client.isPlayingMedia():
+            subtitle = "Playing"
+        self.add_item(
+            title=client.title,
+            subtitle=subtitle,
+            icon=self.icon,
+            method="play",
+            parameters=[client.title, key],
         )
 
     def search(self, section, query):
@@ -65,21 +83,6 @@ class Plexy(Flox):
     def on_deck(self):
         for item in self._plex.library.onDeck():
             self.media_item(item)
-
-    def context_menu(self, data):
-        key = data[0]
-        self._connect_plex()
-        for client in self._plex.clients():
-            subtitle = "Not Playing"
-            if client.isPlayingMedia():
-                subtitle = "Playing"
-            self.add_item(
-                title=client.title,
-                subtitle=subtitle,
-                icon=self.icon,
-                method="play",
-                parameters=[client.title, key],
-            )
 
     def set_setting(self, setting, q):
         self.settings[setting] = str(q)
@@ -113,6 +116,11 @@ class Plexy(Flox):
         media = self._plex.fetchItem(key)
         offset = media.viewOffset or 0
         client.playMedia(media, offset=offset)
+
+    def mark_watched(self, key):
+        self._connect_plex()
+        media = self._plex.fetchItem(key)
+        media.markWatched()
 
     def browser(self, baseurl, machine, key):
         key = key.replace("/", "%2F")
