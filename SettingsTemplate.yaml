@@ -1,0 +1,13 @@
+body:
+  - type: input
+    attributes:
+      name: baseurl
+      label: 'URL:'
+      defaultValue: "http://localhost:32400"
+      description: http(s)://host:port
+  - type: passwordBox
+    attributes:
+      name: token
+      label: 'Token:'
+      defaultValue: ""
+      description: API token
