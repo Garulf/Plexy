@@ -49,6 +49,12 @@ class Plexy(Flox):
         self._connect_plex()
         for client in self._plex.clients():
             self.client_item(client, key)
+        self.add_item(
+            title="Mark Watched",
+            icon=self.icon,
+            method=self.mark_watched,
+            parameters=[key],
+        )
 
     def media_item(self, media):
         self.add_item(
