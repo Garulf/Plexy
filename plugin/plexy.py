@@ -20,6 +20,9 @@ class Plexy(Flox):
 
     def query(self, query):
         q = query.lower()
+        if q == '':
+            self.on_deck()
+            return
         self._connect_plex()
         sections = self._plex.library.sections()
         for section in sections:
@@ -34,29 +37,34 @@ class Plexy(Flox):
         else:
             search_section = self._plex
         try:
-            for item in search_section.search(q):
-                if item.type != "tag":
-                    try:
-                        icon = self.download_thumb(item)
-                        title = f"{item.title} - {item.year}"
-                        self.add_item(
-                            title=title,
-                            subtitle=item.summary.replace("\r", " ").replace("\n", ""),
-                            icon=icon,
-                            method="browser",
-                            parameters=[
-                                self._plex._baseurl,
-                                self._plex.machineIdentifier,
-                                item.key,
-                            ],
-                            context=[item.ratingKey],
-                        )
-                    except AttributeError:
-                        pass
+            self.search(search_section, q)
         except BadRequest:
             pass
         if len(self._results) == 0:
             self.add_item(title="No Results Found!", icon=ICON_APP_ERROR, context="")
+
+    def media_item(self, media):
+        self.add_item(
+            title=media.title,
+            subtitle=media.summary.replace("\r", " ").replace("\n", ""),
+            icon=self.download_thumb(media),
+            method="browser",
+            parameters=[self._plex._baseurl, self._plex.machineIdentifier, media.key],
+            context=[media.ratingKey],
+        )
+
+    def search(self, section, query):
+        for item in section.search(query):
+            if item.type != "tag":
+                try:
+                    self.media_item(item)
+                except AttributeError:
+                    pass
+
+    def on_deck(self):
+        self._connect_plex()
+        for item in self._plex.library.onDeck():
+            self.media_item(item)
 
     def context_menu(self, data):
         key = data[0]
