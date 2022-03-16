@@ -93,12 +93,9 @@ class Plexy(Flox):
         )
 
     def client_item(self, client, key):
-        subtitle = "Not Playing"
-        if client.isPlayingMedia():
-            subtitle = "Playing"
         self.add_item(
             title=client.title,
-            subtitle=subtitle,
+            subtitle=client.product,
             icon=self.icon,
             method="play",
             parameters=[client.title, key],
