@@ -64,20 +64,23 @@ class Plexy(Flox):
         for client in self._plex.clients():
             self.client_item(client, key)
         media = self._plex.fetchItem(key)
-        if media.isWatched:
-            self.add_item(
-                title="Mark Unwatched",
-                icon=self.icon,
-                method="mark_unwatched",
-                parameters=[key],
-            )
-        else:
-            self.add_item(
-                title="Mark Watched",
-                icon=self.icon,
-                method=self.mark_watched,
-                parameters=[key],
-            )
+        try:
+            if media.isWatched:
+                self.add_item(
+                    title="Mark Unwatched",
+                    icon=self.icon,
+                    method="mark_unwatched",
+                    parameters=[key],
+                )
+            else:
+                self.add_item(
+                    title="Mark Watched",
+                    icon=self.icon,
+                    method=self.mark_watched,
+                    parameters=[key],
+                )
+        except AttributeError:
+            pass
 
     def media_item(self, media):
         self.add_item(
