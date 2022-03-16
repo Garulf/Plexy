@@ -8,6 +8,7 @@ from flox import Flox, ICON_APP_ERROR, FLOW_API, WOX_API
 
 from plexapi.server import PlexServer
 from plexapi.utils import download
+from plexapi.playqueue import PlayQueue
 from plexapi.exceptions import BadRequest, Unauthorized
 from requests.exceptions import ConnectionError
 
@@ -139,12 +140,17 @@ class Plexy(Flox):
             )
         return full_path
 
-    def play(self, client, key):
+    def play(self, client, key, shuffle=0):
         self._connect_plex()
         client = self._plex.client(client)
         media = self._plex.fetchItem(key)
-        offset = media.viewOffset or 0
-        client.playMedia(media, offset=offset)
+        kwargs = {}
+        try:
+            kwargs['offset'] = media.viewOffset or 0
+        except AttributeError:
+            pass
+        _ = PlayQueue.create(self._plex, media, shuffle=shuffle, continuous=True)
+        client.playMedia(_, **kwargs)
 
     def mark_watched(self, key):
         self._connect_plex()
