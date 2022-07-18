@@ -1,2 +1,3 @@
 git+https://github.com/garulf/flox@v0.10.4#egg=flox-lib
 plexapi==4.7.0
+requests[use_chardet_on_py3]==2.27.1
