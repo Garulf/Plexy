@@ -42,19 +42,18 @@ You can filter which library is searched by typing the libraries name and a colo
 
 #### Example:
 
-```pl cars```
+Search for any media item matching "cars".
 
-This will search for any media item matching "cars".
+![Plexy](https://github.com/Garulf/Plexy/assets/535299/c592f4bf-2b15-49a1-8d3a-4e76a976b88d)
 
-```pl movies:cars 3```
+Search the "movies" library for an item matching "cars 3".
 
-This will search the "movies" library for an item matching "cars 3".
+![Plexy](https://github.com/Garulf/Plexy/assets/535299/f3dee70a-bb7c-4cbe-bccf-8f231c88bcc7)
 
-```pl tvshows:the witcher```
+Search the library matching "TV Shows" for an item called "the witcher"
 
-```pl tv shows:the witcher```
+![Plexy](https://github.com/Garulf/Plexy/assets/535299/7a2da5c4-9f76-431a-b6a9-e7442c3ce571)
 
-Both examples will search the library matching "TV Shows" for an item called "the witcher"
 
 ### Interaction:
 
@@ -64,7 +63,7 @@ Opening the context menu on an item allows you to stream the media item to any a
 
 # Requirements
 
-Python 3.6 or higher
+Python 3.8 or higher
 
 Wox, or Flow Launcher
 
