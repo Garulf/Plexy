@@ -1,4 +1,4 @@
-![Plexy](https://github.com/Garulf/Plexy/assets/535299/04582125-0294-4092-80fd-19c2ce9de3dd)
+![hero](https://github.com/Garulf/Plexy/assets/535299/023656da-3491-49ef-b47b-8bd9557c1f90)
 
 # Plexy
  Search and cast your Plex Library with Flow Launcher
