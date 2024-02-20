@@ -42,17 +42,18 @@ You can filter which library is searched by typing the libraries name and a colo
 
 #### Example:
 
-Search for any media item matching "cars".
+Search for any media item matching "toy".
 
-![Plexy](https://github.com/Garulf/Plexy/assets/535299/c592f4bf-2b15-49a1-8d3a-4e76a976b88d)
+![example 1](https://github.com/Garulf/Plexy/assets/535299/392812ad-dcf0-4185-9784-db82530188f0)
 
 Search the "movies" library for an item matching "cars 3".
 
-![Plexy](https://github.com/Garulf/Plexy/assets/535299/f3dee70a-bb7c-4cbe-bccf-8f231c88bcc7)
+![example 2](https://github.com/Garulf/Plexy/assets/535299/7815f26d-e5f7-45b3-9549-41b71f98fa7d)
+
 
 Search the library matching "TV Shows" for an item called "the witcher"
 
-![Plexy](https://github.com/Garulf/Plexy/assets/535299/7a2da5c4-9f76-431a-b6a9-e7442c3ce571)
+![example 3](https://github.com/Garulf/Plexy/assets/535299/7a2da5c4-9f76-431a-b6a9-e7442c3ce571)
 
 
 ### Interaction:
