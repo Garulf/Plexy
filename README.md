@@ -1,5 +1,8 @@
 # Plexy
  Search and cast your Plex Library with Flow Launcher
+
+![Plexy](https://github.com/Garulf/Plexy/assets/535299/7b703874-85cc-4beb-9ca7-9bcf411ffff1)
+
 # Installation:
 
 ### Flow Lancher:
