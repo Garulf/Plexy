@@ -39,10 +39,10 @@ To search a single library, type its name and a colon (`:`) before your search t
 library name are optional:
 
 ```
-pl movies: cars 3
+pl movies: cars
 ```
 
-![Plexy searching the Movies library for "cars 3"](.github/assets/library-filter.png)
+![Plexy searching the Movies library for "cars"](.github/assets/library-filter.png)
 
 ```
 pl tvshows: the witcher

@@ -1,0 +1,17 @@
+{
+    "keyword": "pl",
+    "query": "tvshows: the witcher",
+    "icon": "../../data/icon.png",
+    "max_results": 1,
+    "selection": 0,
+    "results": [
+        {
+            "title": "The Witcher",
+            "subtitle": "Monster hunter Geralt of Rivia takes contracts across a war-torn continent as his fate becomes bound to a young princess.",
+            "icon": "icons/the-witcher.png"
+        }
+    ],
+    "css": "win11-dark.css",
+    "query_suggestion": "",
+    "show_caret": true
+}

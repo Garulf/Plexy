@@ -1,0 +1,27 @@
+{
+    "keyword": "pl",
+    "query": "movies: cars",
+    "icon": "../../data/icon.png",
+    "max_results": 3,
+    "selection": 0,
+    "results": [
+        {
+            "title": "Cars",
+            "subtitle": "Hotshot rookie Lightning McQueen gets stranded in Radiator Springs, a forgotten town on Route 66.",
+            "icon": "icons/cars.png"
+        },
+        {
+            "title": "Cars 2",
+            "subtitle": "Lightning McQueen and his best friend Mater head overseas for the World Grand Prix and stumble into espionage.",
+            "icon": "icons/cars-2.png"
+        },
+        {
+            "title": "Cars 3",
+            "subtitle": "Pushed aside by a new generation of high-tech racers, Lightning McQueen sets out to prove he still has it.",
+            "icon": "icons/cars-3.png"
+        }
+    ],
+    "css": "win11-dark.css",
+    "query_suggestion": "",
+    "show_caret": true
+}
