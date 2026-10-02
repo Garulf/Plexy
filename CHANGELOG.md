@@ -7,6 +7,8 @@ All notable changes to this project are documented here. Entries are taken from 
 - Switch to the python_v2 plugin runtime with pyflowlauncher (Wox is no longer supported)
 - Update plexapi to 4.18.3
 - Reuse the Plex connection between searches and download thumbnails in parallel
+- Show posters and details in Flow Launcher's preview panel (F1)
+- Cast to Chromecasts on your network from the context menu
 - Open the plugin settings from the connection error result
 - Generate the README with readwright
 

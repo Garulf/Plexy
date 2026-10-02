@@ -37,6 +37,7 @@ jobs:
 
           cp -r src/. "$build_dir/"
           cp data/icon.png "$build_dir/"
+          cp data/cast.png "$build_dir/"
           cp data/plugin.json "$build_dir/"
           cp data/SettingsTemplate.yaml "$build_dir/"
           cp LICENSE "$build_dir/"
@@ -47,13 +48,23 @@ jobs:
           echo "build_dir=$build_dir" >> "$GITHUB_OUTPUT"
           echo "site_dir=$site_dir" >> "$GITHUB_OUTPUT"
 
+      # zeroconf only publishes compiled wheels; build its pure-python fallback and tag it as such.
+      - name: Build pure-python zeroconf wheel
+        shell: bash
+        run: |
+          python -m pip install --upgrade pip wheel
+          SKIP_CYTHON=1 python -m pip wheel --no-deps --no-binary zeroconf \
+            "$(grep -i '^zeroconf==' requirements.txt)" -w "$RUNNER_TEMP/wheelhouse"
+          python -m wheel tags --remove --python-tag py3 --abi-tag none --platform-tag any \
+            "$RUNNER_TEMP"/wheelhouse/zeroconf-*.whl
+
       # Pure-python wheels only: the zip is built on Linux but runs on the user's Windows Python.
       - name: Install requirements into plugin/site-packages
         shell: bash
         run: |
-          python -m pip install --upgrade pip
           python -m pip install -r requirements.txt --target "${{ steps.stage.outputs.site_dir }}" \
-            --only-binary=:all: --implementation py --platform any
+            --only-binary=:all: --implementation py --platform any --python-version 3.11 \
+            --find-links "$RUNNER_TEMP/wheelhouse"
 
       - name: Create release archive
         id: archive

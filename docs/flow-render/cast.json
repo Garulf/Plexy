@@ -1,0 +1,32 @@
+{
+    "keyword": "",
+    "query": "",
+    "icon": "../../data/icon.png",
+    "max_results": 4,
+    "selection": 0,
+    "results": [
+        {
+            "title": "Living Room TV",
+            "subtitle": "Chromecast · Google TV Streamer",
+            "icon": "../../data/cast.png"
+        },
+        {
+            "title": "Bedroom TV",
+            "subtitle": "Chromecast Ultra",
+            "icon": "../../data/cast.png"
+        },
+        {
+            "title": "SHIELD Android TV",
+            "subtitle": "Plex for Android (TV)",
+            "icon": "../../data/icon.png"
+        },
+        {
+            "title": "Mark Watched",
+            "subtitle": "",
+            "icon": "../../data/icon.png"
+        }
+    ],
+    "css": "win11-dark.css",
+    "query_suggestion": "",
+    "show_caret": true
+}

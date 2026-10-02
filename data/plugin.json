@@ -2,7 +2,7 @@
   "ID": "32D9F15C38EE400EA7E3DF57DA15BFD5",
   "ActionKeyword": "pl",
   "Name": "Plexy",
-  "Description": "Search and cast your Plex Media Library",
+  "Description": "Search your Plex library and cast to Chromecasts and Plex clients",
   "Author": "Garulf",
   "Version": "3.0.0",
   "Language": "python_v2",

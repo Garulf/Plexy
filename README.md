@@ -3,7 +3,7 @@
 
 # Plexy
 
-Search and cast your Plex library with Flow Launcher.
+Search your Plex library and cast it to a Chromecast or Plex client, straight from Flow Launcher.
 
 [![CI](https://img.shields.io/github/actions/workflow/status/Garulf/Plexy/release.yml)](https://github.com/Garulf/Plexy/actions/workflows/release.yml) [![Release](https://img.shields.io/github/v/release/Garulf/Plexy)](https://github.com/Garulf/Plexy/releases/latest)
 
@@ -11,13 +11,21 @@ Search and cast your Plex library with Flow Launcher.
 
 ## Features
 
+* **Cast to your TV in two keystrokes.** Find a movie, press <kbd>Shift</kbd>+<kbd>Enter</kbd>, pick a Chromecast.
+  No phone, no remote, no Plex app to open.
+* **Chromecasts found automatically.** Every Chromecast and Google TV on your network shows up on its own;
+  speakers join in for music.
+* **Plex clients too.** Send media to any Plex app that's open on your network.
+* **Picks up where you left off.** Casting resumes from your last position.
 * **Search your whole library.** Movies, shows, episodes, music and collections from one search box.
 * **Filter by library.** Prefix a search with a library name to search only that library.
+* **Preview panel.** Press `F1` for the poster, year, runtime, rating and summary.
 * **On Deck.** An empty search lists what you're in the middle of watching.
-* **Cast to any client.** Send media to any available Plex client from the context menu.
 * **Track progress.** Mark items watched or unwatched without opening Plex.
 
 ## Usage
+
+### Search
 
 Type `pl` followed by a search term:
 
@@ -42,8 +50,21 @@ pl tvshows: the witcher
 
 ![Plexy searching the TV Shows library for "the witcher"](.github/assets/library-filter-tv.png)
 
-Selecting a result opens it in Plex Web. Open the context menu on a result (<kbd>Shift</kbd>+<kbd>Enter</kbd>)
-to cast it to a Plex client, or to mark it watched or unwatched.
+Selecting a result opens it in Plex Web.
+
+### Cast to a Chromecast or Plex client
+
+Open the context menu on any result with <kbd>Shift</kbd>+<kbd>Enter</kbd> and pick where to play it:
+
+![Plexy context menu listing Chromecasts and Plex clients to cast to](.github/assets/cast.png)
+
+Plexy confirms with a notification once it's on its way, and the context menu closes straight away so you're
+not left waiting. The same menu lets you mark the item watched or unwatched.
+
+Chromecasts are found automatically on your local network. Videos only go to devices with a screen; speakers
+and speaker groups appear for music. Casting launches the Plex app on the Chromecast, which then streams
+straight from your server, so the server must be reachable from the Chromecast. If your URL setting uses
+`localhost`, Plexy hands the Chromecast this PC's network address instead.
 
 ## Installation
 
@@ -79,6 +100,8 @@ selecting the error result opens the settings.
 - Switch to the python_v2 plugin runtime with pyflowlauncher (Wox is no longer supported)
 - Update plexapi to 4.18.3
 - Reuse the Plex connection between searches and download thumbnails in parallel
+- Show posters and details in Flow Launcher's preview panel (F1)
+- Cast to Chromecasts on your network from the context menu
 - Open the plugin settings from the connection error result
 - Generate the README with readwright
 

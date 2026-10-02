@@ -5,7 +5,7 @@ project:
   name: Plexy
   owner: Garulf
   repo: Plexy
-  tagline: Search and cast your Plex library with Flow Launcher.
+  tagline: Search your Plex library and cast it to a Chromecast or Plex client, straight from Flow Launcher.
   ci_workflow: release.yml
 banner:
   image: .github/assets/hero.png
