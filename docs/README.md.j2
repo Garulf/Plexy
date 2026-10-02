@@ -1,0 +1,77 @@
+{% extends "base.md.j2" %}
+
+{% block usage %}
+## Features
+
+* **Search your whole library.** Movies, shows, episodes, music and collections from one search box.
+* **Filter by library.** Prefix a search with a library name to search only that library.
+* **On Deck.** An empty search lists what you're in the middle of watching.
+* **Cast to any client.** Send media to any available Plex client from the context menu.
+* **Track progress.** Mark items watched or unwatched without opening Plex.
+
+## Usage
+
+Type `pl` followed by a search term:
+
+```
+pl toy
+```
+
+{{ screenshot("search", alt="Plexy search results for \"toy\"") }}
+
+To search a single library, type its name and a colon (`:`) before your search term. Spaces in the
+library name are optional:
+
+```
+pl movies: cars 3
+```
+
+{{ screenshot("library-filter", alt="Plexy searching the Movies library for \"cars 3\"") }}
+
+```
+pl tvshows: the witcher
+```
+
+{{ screenshot("library-filter-tv", alt="Plexy searching the TV Shows library for \"the witcher\"") }}
+
+Selecting a result opens it in Plex Web. Open the context menu on a result (<kbd>Shift</kbd>+<kbd>Enter</kbd>)
+to cast it to a Plex client, or to mark it watched or unwatched.
+
+## Installation
+
+### Flow Launcher
+
+In Flow Launcher, type:
+
+```
+pm install plexy
+```
+
+{{ screenshot("install", alt="Flow Launcher plugin manager installing Plexy") }}
+
+### Manual installation
+
+Download `Plexy-<version>.zip` from the [latest release]({{ project.url }}/releases/latest) and unzip it into
+`%appdata%\FlowLauncher\Plugins`, then restart Flow Launcher.
+
+## Configuration
+
+Set your server's details in Flow Launcher's settings under **Plugins → Plexy**. If Plexy can't connect,
+selecting the error result opens the settings.
+
+| Setting | Format |
+| --- | --- |
+| URL | Must include `http://` or `https://`, e.g. `http://127.0.0.1:32400` |
+| Token | See Plex's guide on [finding your authentication token](https://support.plex.tv/articles/204059436-finding-an-authentication-token-x-plex-token/) |
+
+## Changelog
+
+{{ changelog(3) }}
+
+See [CHANGELOG.md](CHANGELOG.md) for the full history.
+{% endblock %}
+
+{% block screenshots %}{% endblock %}
+{% block install %}{% endblock %}
+{% block contributing %}{% endblock %}
+{% block license %}{% endblock %}
