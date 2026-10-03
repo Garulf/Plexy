@@ -1,0 +1,32 @@
+{
+    "keyword": "pl",
+    "query": "toy",
+    "icon": "../../data/icon.png",
+    "max_results": 4,
+    "selection": 0,
+    "results": [
+        {
+            "title": "Toy Story Collection",
+            "subtitle": "Pixar's films about the secret life of toys, from Woody and Buzz's first meeting onward.",
+            "icon": "icons/toy-story-collection.png"
+        },
+        {
+            "title": "Toy Story",
+            "subtitle": "Cowboy doll Woody's place as Andy's favourite toy is threatened by the arrival of space ranger Buzz Lightyear.",
+            "icon": "icons/toy-story.png"
+        },
+        {
+            "title": "Toy Story 2",
+            "subtitle": "When Woody is snatched by a toy collector, Buzz and the gang set out on a rescue mission across town.",
+            "icon": "icons/toy-story-2.png"
+        },
+        {
+            "title": "Toy Story 3",
+            "subtitle": "With Andy leaving for college, the toys end up at a daycare centre that isn't the paradise it seems.",
+            "icon": "icons/toy-story-3.png"
+        }
+    ],
+    "css": "win11-dark.css",
+    "query_suggestion": " ",
+    "show_caret": true
+}

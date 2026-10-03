@@ -1,0 +1,35 @@
+{
+    "keyword": "pl",
+    "query": "mission imp",
+    "icon": "../../data/icon.png",
+    "max_results": 4,
+    "selection": 0,
+    "results": [
+        {
+            "title": "Mission: Impossible - Dead Reckoning",
+            "subtitle": "Ethan Hunt and his IMF team race to track down a rogue AI before it falls into the wrong hands.",
+            "icon": "icons/mi-dead-reckoning.png"
+        },
+        {
+            "title": "Mission: Impossible - Fallout",
+            "subtitle": "After a mission goes wrong, Ethan Hunt must stop a plutonium plot while the CIA watches his every move.",
+            "icon": "icons/mi-fallout.png"
+        },
+        {
+            "title": "Mission: Impossible",
+            "subtitle": "Framed for the deaths of his team, agent Ethan Hunt must uncover the real traitor inside the IMF.",
+            "icon": "icons/mi.png"
+        },
+        {
+            "title": "Mission: Impossible Collection",
+            "subtitle": "The Mission: Impossible films following IMF agent Ethan Hunt.",
+            "icon": "icons/mi-collection.png"
+        }
+    ],
+    "css": [
+        "win11-dark.css",
+        "hero.css"
+    ],
+    "query_suggestion": "",
+    "show_caret": true
+}

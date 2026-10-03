@@ -1,0 +1,17 @@
+{
+    "keyword": "pl",
+    "query": "tvshows: stranger things",
+    "icon": "../../data/icon.png",
+    "max_results": 1,
+    "selection": 0,
+    "results": [
+        {
+            "title": "Stranger Things",
+            "subtitle": "When a boy vanishes in a small Indiana town, his friends, family and the police uncover secret experiments and a terrifying parallel world.",
+            "icon": "icons/stranger-things.png"
+        }
+    ],
+    "css": "win11-dark.css",
+    "query_suggestion": "",
+    "show_caret": true
+}
