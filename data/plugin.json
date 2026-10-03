@@ -4,7 +4,7 @@
   "Name": "Plexy",
   "Description": "Search your Plex library and cast to Chromecasts and Plex clients",
   "Author": "Garulf",
-  "Version": "3.0.0",
+  "Version": "2.0.0",
   "Language": "python_v2",
   "Website": "https://github.com/Garulf/Plexy",
   "IcoPath": "icon.png",
