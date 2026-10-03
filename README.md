@@ -45,10 +45,10 @@ pl movies: cars
 ![Plexy searching the Movies library for "cars"](.github/assets/library-filter.png)
 
 ```
-pl tvshows: the witcher
+pl tvshows: stranger things
 ```
 
-![Plexy searching the TV Shows library for "the witcher"](.github/assets/library-filter-tv.png)
+![Plexy searching the TV Shows library for "stranger things"](.github/assets/library-filter-tv.png)
 
 Selecting a result opens it in Plex Web.
 

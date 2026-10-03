@@ -32,15 +32,14 @@ POSTERS = {
     "cars": "Cars (film)",
     "cars-2": "Cars 2",
     "cars-3": "Cars 3",
-    "the-witcher-logo": "The Witcher (TV series)",
+    # TV series pages only have logos, so use a season page's poster
+    "stranger-things": "Stranger Things season 1",
 }
 # Plex shows automatic collections as a mosaic of their films' posters
 COLLECTIONS = {
     "mi-collection": ["mi", "mi-2", "mi-ghost-protocol", "mi-fallout"],
     "toy-story-collection": ["toy-story", "toy-story-2", "toy-story-3", "toy-story-logo"],
 }
-# no poster on Wikipedia, so show the logo on a dark tile
-LOGO_TILES = {"the-witcher": "the-witcher-logo"}
 
 
 def get(url: str) -> bytes:
@@ -83,12 +82,6 @@ def main() -> None:
         for index, member in enumerate(members):
             mosaic.paste(square(images[member], half), ((index % 2) * half, (index // 2) * half))
         mosaic.save(ICONS / f"{slug}.png")
-    for slug, logo_slug in LOGO_TILES.items():
-        logo = images[logo_slug].convert("RGBA")
-        logo.thumbnail((SIZE - 16, SIZE - 16))
-        tile = Image.new("RGBA", (SIZE, SIZE), (24, 24, 27, 255))
-        tile.alpha_composite(logo, ((SIZE - logo.width) // 2, (SIZE - logo.height) // 2))
-        tile.save(ICONS / f"{slug}.png")
     print(f"Saved {len(list(ICONS.glob('*.png')))} icons to {ICONS}")
 
 

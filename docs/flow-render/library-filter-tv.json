@@ -1,14 +1,14 @@
 {
     "keyword": "pl",
-    "query": "tvshows: the witcher",
+    "query": "tvshows: stranger things",
     "icon": "../../data/icon.png",
     "max_results": 1,
     "selection": 0,
     "results": [
         {
-            "title": "The Witcher",
-            "subtitle": "Monster hunter Geralt of Rivia takes contracts across a war-torn continent as his fate becomes bound to a young princess.",
-            "icon": "icons/the-witcher.png"
+            "title": "Stranger Things",
+            "subtitle": "When a boy vanishes in a small Indiana town, his friends, family and the police uncover secret experiments and a terrifying parallel world.",
+            "icon": "icons/stranger-things.png"
         }
     ],
     "css": "win11-dark.css",
