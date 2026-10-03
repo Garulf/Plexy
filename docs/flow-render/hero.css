@@ -1,5 +1,20 @@
 /* flow-render-canvas: 1500x500 */
 /* README banner: plugin name on the left, an enlarged launcher window cut off at the bottom right. */
+
+/* Google Fonts (latin subset); @font-face rather than @import, which only works at the top of a stylesheet */
+@font-face {
+    font-family: 'Inter';
+    font-weight: 700;
+    font-display: block;
+    src: url(https://fonts.gstatic.com/s/inter/v20/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuFuYAZ9hiA.woff2) format('woff2');
+}
+
+@font-face {
+    font-family: 'JetBrains Mono';
+    font-weight: 400;
+    font-display: block;
+    src: url(https://fonts.gstatic.com/s/jetbrainsmono/v24/tDbY2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKxTOlOV.woff2) format('woff2');
+}
 html,
 body {
     margin: 0;
@@ -34,14 +49,14 @@ body::after {
 body::before {
     content: "plexy";
     top: 160px;
-    font: bold 64px 'Segoe UI', sans-serif;
+    font: 700 64px 'Inter', sans-serif;
 }
 
 body::after {
     content: "search & cast your Plex library";
     top: 252px;
     color: #b8b8bc;
-    font: 20px 'Cascadia Mono', 'DejaVu Sans Mono', monospace;
+    font: 20px 'JetBrains Mono', monospace;
 }
 
 #Preview {
