@@ -95,6 +95,27 @@ selecting the error result opens the settings.
 
 ## Changelog
 
+### [3.0.0](https://github.com/Garulf/Plexy/compare/v2.0.0...v3.0.0) (2026-10-03)
+
+#### ⚠ BREAKING CHANGES
+
+* Plexy now runs on Flow Launcher's python_v2 plugin runtime with pyflowlauncher; Wox is no longer supported.
+
+#### Features
+
+* cast to Chromecasts on your network from the context menu ([d602aca](https://github.com/Garulf/Plexy/commit/d602acaef69d6a23277ac1b7bed0c1a99daee5f1))
+* migrate to the python_v2 runtime with pyflowlauncher ([#11](https://github.com/Garulf/Plexy/issues/11)) ([d602aca](https://github.com/Garulf/Plexy/commit/d602acaef69d6a23277ac1b7bed0c1a99daee5f1))
+* open the plugin settings from the connection error result ([d602aca](https://github.com/Garulf/Plexy/commit/d602acaef69d6a23277ac1b7bed0c1a99daee5f1))
+* show posters and details in Flow Launcher's preview panel (F1) ([d602aca](https://github.com/Garulf/Plexy/commit/d602acaef69d6a23277ac1b7bed0c1a99daee5f1))
+
+#### Bug Fixes
+
+* **deps:** update plexapi to 4.18.3 ([d602aca](https://github.com/Garulf/Plexy/commit/d602acaef69d6a23277ac1b7bed0c1a99daee5f1))
+
+#### Performance Improvements
+
+* reuse the Plex connection between searches and download thumbnails in parallel ([d602aca](https://github.com/Garulf/Plexy/commit/d602acaef69d6a23277ac1b7bed0c1a99daee5f1))
+
 ### [2.0.0](https://github.com/Garulf/Plexy/releases/tag/v2.0.0) - 2022-09-08
 
 - Fix Scoop Flow Launcher crashes
@@ -102,9 +123,5 @@ selecting the error result opens the settings.
 ### [1.1.1](https://github.com/Garulf/Plexy/releases/tag/v1.1.1) - 2022-07-18
 
 - Fix requests by @Garulf in https://github.com/Garulf/Plexy/pull/5
-
-### [1.1.0](https://github.com/Garulf/Plexy/releases/tag/v1.1.0) - 2022-03-16
-
-- See the release page for details.
 
 See [CHANGELOG.md](CHANGELOG.md) for the full history.
