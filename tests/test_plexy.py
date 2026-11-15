@@ -329,3 +329,8 @@ def test_lan_server_url_is_used_as_is(plex):
 def test_plugin_methods_are_registered():
     names = set(plexy.plugin._event_handler._events)
     assert {"query", "context_menu", "play", "cast", "mark_watched", "mark_unwatched"} <= names
+
+
+@pytest.mark.parametrize("data", [None, []])
+def test_context_menu_of_results_without_media_is_empty(plex, data):
+    assert run(plexy.context_menu(data)) == []

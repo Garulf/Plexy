@@ -240,6 +240,8 @@ async def query(query: str):
 
 @plugin.on_method
 async def context_menu(data: list):
+    if not data:
+        return
     key = data[0]
     plex = await asyncio.to_thread(server)
     clients, media = await asyncio.gather(
