@@ -28,7 +28,7 @@ python3 -m pip install -r "$root/requirements.txt" \
   --target "$build_dir/plugin/site-packages" \
   --only-binary=:all: --platform any --python-version 3.11 --implementation py \
   --find-links "$wheelhouse" \
-  --quiet --disable-pip-version-check
+  --no-compile --quiet --disable-pip-version-check
 
 mkdir -p "$out_dir"
 zip_path="$(cd "$out_dir" && pwd)/Plexy-${version}.zip"
