@@ -1,12 +1,11 @@
 import asyncio
 import socket
 
+import plexy
 import pytest
+from conftest import FakePlex
 from plexapi.exceptions import BadRequest, Unauthorized
 from requests.exceptions import ConnectionError
-
-import plexy
-from conftest import FakePlex
 
 LIVING_ROOM = "11111111-1111-1111-1111-111111111111"
 start_cast_browser = plexy.cast_browser
@@ -119,7 +118,7 @@ def test_failed_download_has_no_image(plex, thumbs, monkeypatch):
 
 
 def test_describe(plex):
-    movie, sequel, cars = plex.movies
+    movie, _, cars = plex.movies
     assert plexy.describe(movie) == (
         "1995 · 1h 21m · G\n\nCowboy doll Woody's place as Andy's favourite toy"
         "     is threatened by Buzz Lightyear."
@@ -188,7 +187,7 @@ def test_discovery_failure_is_logged_not_raised(monkeypatch):
 def test_context_menu_for_a_movie(plex, browser):
     menu = run(plexy.context_menu([101]))
     assert titles(menu) == ["SHIELD Android TV", "Bedroom TV", "Living Room TV", "Mark Watched"]
-    shield, bedroom, living_room, watched = menu
+    shield, _, living_room, watched = menu
     assert shield["SubTitle"] == "Plex for Android (TV)"
     assert shield["JsonRPCAction"]["Method"] == "play"
     assert shield["JsonRPCAction"]["Parameters"] == ["SHIELD Android TV", 101, "Toy Story"]

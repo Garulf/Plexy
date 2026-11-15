@@ -2,14 +2,13 @@ from types import SimpleNamespace
 from uuid import UUID
 from xml.etree import ElementTree
 
+import plexy
 import pytest
 from plexapi.audio import Track
 from plexapi.collection import Collection
 from plexapi.media import Genre
 from plexapi.server import PlexServer
 from plexapi.video import Episode, Movie
-
-import plexy
 
 BASEURL = "http://192.168.1.20:32400"
 TOKEN = "fake-token"
