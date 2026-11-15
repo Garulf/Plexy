@@ -187,7 +187,7 @@ def describe(item) -> str:
         details.append(f"{hours}h {minutes}m" if hours else f"{minutes}m")
     details.append(getattr(item, "contentRating", None))
     line = " · ".join(str(detail) for detail in details if detail)
-    summary = getattr(item, "summary", "").strip()
+    summary = (getattr(item, "summary", None) or "").strip()
     return "\n\n".join(part for part in (line, summary) if part)
 
 
@@ -228,7 +228,7 @@ async def query(query: str):
         thumb, poster = images[2 * index:2 * index + 2]
         yield Result(
             title=item.title,
-            subtitle=" ".join(getattr(item, "summary", "").split()),
+            subtitle=" ".join((getattr(item, "summary", None) or "").split()),
             icon=thumb or ICON,
             preview=preview(item, poster),
             # keep Plex's relevance order

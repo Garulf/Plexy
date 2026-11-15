@@ -408,3 +408,10 @@ def test_changed_settings_apply_to_the_next_query(monkeypatch):
     monkeypatch.setattr(plexy, "_connect", connect)
     plexy.plugin.run()
     assert connections == [("http://localhost:32400", "old"), ("https://plex.example.com", "new")]
+
+
+def test_items_without_a_summary(plex, thumbs):
+    plex.track.summary = None
+    (result,) = run(plexy.query("friend"))
+    assert result["SubTitle"] == ""
+    assert result["Preview"]["Description"] == "Randy Newman · 2m"
