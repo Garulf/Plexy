@@ -374,3 +374,37 @@ def test_url_that_is_not_a_plex_server_opens_settings(web_server, monkeypatch, s
     (result,) = run(plexy.query("toy"))
     assert result["Title"] == "Error: Unable to connect to Plex server."
     assert result["JsonRPCAction"]["Method"] == "Flow.Launcher.OpenSettingDialog"
+
+
+def test_changed_settings_apply_to_the_next_query(monkeypatch):
+    from pyflowlauncher.jsonrpc import JsonRPCV2Client
+    from pyflowlauncher.launcher import FlowLauncherV2
+
+    requests = [
+        {"id": 1, "method": "query", "params": [{"search": "toy"}, {"baseurl": "http://localhost:32400", "token": "old"}]},
+        {"id": 2, "method": "query", "params": [{"search": "toy"}, {"baseurl": "https://plex.example.com", "token": "new"}]},
+        {"id": 3, "method": "close", "params": []},
+    ]
+
+    connected = threading.Semaphore(0)
+
+    async def messages(self):
+        for request in requests:
+            yield request
+            if request["method"] == "query":
+                await asyncio.to_thread(connected.acquire, timeout=5)
+
+    monkeypatch.setattr(JsonRPCV2Client, "messages", messages)
+    launcher = FlowLauncherV2()
+    launcher._client.send = lambda message: None
+    monkeypatch.setattr(plexy.plugin, "_launcher", launcher)
+    connections = []
+
+    def connect(baseurl, token):
+        connections.append((baseurl, token))
+        connected.release()
+        raise ConnectionError("refused")
+
+    monkeypatch.setattr(plexy, "_connect", connect)
+    plexy.plugin.run()
+    assert connections == [("http://localhost:32400", "old"), ("https://plex.example.com", "new")]
