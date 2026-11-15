@@ -230,4 +230,3 @@ def messages(monkeypatch):
 
     monkeypatch.setattr(plexy.plugin.launcher.api, "invoke", invoke)
     return sent
-
