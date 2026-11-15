@@ -1,10 +1,10 @@
 """Download the posters used as result icons in the README screenshots.
 
 The posters are non-free artwork, so they're fetched from Wikipedia into icons/ (git-ignored)
-instead of being committed. Run with flow-render's Python, which has Pillow, then render:
+instead of being committed. render.py runs this when icons/ is empty; to refetch them, run it
+with flow-render's Python, which has Pillow:
 
-    python fetch_posters.py
-    flow-render -c search.json -o out    # from this directory, so hero.css resolves
+    uv run --no-project --with flow-render==0.15.0 python docs/flow-render/fetch_posters.py
 """
 import json
 import urllib.parse

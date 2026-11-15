@@ -5,7 +5,7 @@
 
 Search your Plex library and cast it to a Chromecast or Plex client, straight from Flow Launcher.
 
-[![CI](https://img.shields.io/github/actions/workflow/status/Garulf/Plexy/release.yml)](https://github.com/Garulf/Plexy/actions/workflows/release.yml) [![Release](https://img.shields.io/github/v/release/Garulf/Plexy)](https://github.com/Garulf/Plexy/releases/latest)
+[![CI](https://img.shields.io/github/actions/workflow/status/Garulf/Plexy/tests.yml)](https://github.com/Garulf/Plexy/actions/workflows/tests.yml) [![Release](https://img.shields.io/github/v/release/Garulf/Plexy)](https://github.com/Garulf/Plexy/releases/latest)
 
 [![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-support-FFDD00?logo=buy-me-a-coffee)](https://www.buymeacoffee.com/garulf) [![Sponsor](https://img.shields.io/github/sponsors/Garulf?logo=githubsponsors)](https://github.com/sponsors/Garulf)
 
@@ -33,7 +33,7 @@ Type `pl` followed by a search term:
 pl toy
 ```
 
-![Plexy search results for "toy"](.github/assets/search.png)
+![Plexy search results for "toy"](.github/assets/search-light.png#gh-light-mode-only)![Plexy search results for "toy"](.github/assets/search-dark.png#gh-dark-mode-only)
 
 To search a single library, type its name and a colon (`:`) before your search term. Spaces in the
 library name are optional:
@@ -42,13 +42,13 @@ library name are optional:
 pl movies: cars
 ```
 
-![Plexy searching the Movies library for "cars"](.github/assets/library-filter.png)
+![Plexy searching the Movies library for "cars"](.github/assets/library-filter-light.png#gh-light-mode-only)![Plexy searching the Movies library for "cars"](.github/assets/library-filter-dark.png#gh-dark-mode-only)
 
 ```
 pl tvshows: stranger things
 ```
 
-![Plexy searching the TV Shows library for "stranger things"](.github/assets/library-filter-tv.png)
+![Plexy searching the TV Shows library for "stranger things"](.github/assets/library-filter-tv-light.png#gh-light-mode-only)![Plexy searching the TV Shows library for "stranger things"](.github/assets/library-filter-tv-dark.png#gh-dark-mode-only)
 
 Selecting a result opens it in Plex Web.
 
@@ -56,7 +56,7 @@ Selecting a result opens it in Plex Web.
 
 Open the context menu on any result with <kbd>Shift</kbd>+<kbd>Enter</kbd> and pick where to play it:
 
-![Plexy context menu listing Chromecasts and Plex clients to cast to](.github/assets/cast.png)
+![Plexy context menu listing Chromecasts and Plex clients to cast to](.github/assets/cast-light.png#gh-light-mode-only)![Plexy context menu listing Chromecasts and Plex clients to cast to](.github/assets/cast-dark.png#gh-dark-mode-only)
 
 Plexy confirms with a notification once it's on its way, and the context menu closes straight away so you're
 not left waiting. The same menu lets you mark the item watched or unwatched.
@@ -76,7 +76,7 @@ In Flow Launcher, type:
 pm install plexy
 ```
 
-![Flow Launcher plugin manager installing Plexy](.github/assets/install.png)
+![Flow Launcher plugin manager installing Plexy](.github/assets/install-light.png#gh-light-mode-only)![Flow Launcher plugin manager installing Plexy](.github/assets/install-dark.png#gh-dark-mode-only)
 
 ### Manual installation
 
