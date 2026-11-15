@@ -1,5 +1,7 @@
 import asyncio
 import socket
+import threading
+from http.server import BaseHTTPRequestHandler, HTTPServer
 
 import plexy
 import pytest
@@ -334,3 +336,41 @@ def test_plugin_methods_are_registered():
 @pytest.mark.parametrize("data", [None, []])
 def test_context_menu_of_results_without_media_is_empty(plex, data):
     assert run(plexy.context_menu(data)) == []
+
+
+class FakeWebServer(BaseHTTPRequestHandler):
+    status = 200
+    body = b""
+
+    def do_GET(self):
+        self.send_response(self.status)
+        self.send_header("Content-Type", "text/html")
+        self.end_headers()
+        self.wfile.write(self.body)
+
+    def log_message(self, *args):
+        pass
+
+
+@pytest.fixture
+def web_server():
+    httpd = HTTPServer(("127.0.0.1", 0), FakeWebServer)
+    thread = threading.Thread(target=httpd.serve_forever, daemon=True)
+    thread.start()
+    yield f"http://127.0.0.1:{httpd.server_port}"
+    httpd.shutdown()
+    httpd.server_close()
+
+
+@pytest.mark.parametrize("status, body", [
+    (404, b"Not Found"),
+    (502, b"Bad Gateway"),
+    (200, b"<html><body><p>Sign in to QuickConnect<br></body></html>"),
+])
+def test_url_that_is_not_a_plex_server_opens_settings(web_server, monkeypatch, status, body):
+    monkeypatch.setattr(FakeWebServer, "status", status)
+    monkeypatch.setattr(FakeWebServer, "body", body)
+    monkeypatch.setattr(plexy.plugin.launcher, "_settings", {"baseurl": web_server, "token": "fake-token"})
+    (result,) = run(plexy.query("toy"))
+    assert result["Title"] == "Error: Unable to connect to Plex server."
+    assert result["JsonRPCAction"]["Method"] == "Flow.Launcher.OpenSettingDialog"

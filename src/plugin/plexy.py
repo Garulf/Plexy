@@ -7,9 +7,10 @@ from functools import lru_cache, wraps
 from pathlib import Path
 from urllib.parse import urlparse
 from uuid import UUID
+from xml.etree.ElementTree import ParseError
 
 from plexapi.base import PlexPartialObject
-from plexapi.exceptions import BadRequest, Unauthorized
+from plexapi.exceptions import BadRequest, PlexApiException
 from plexapi.playqueue import PlayQueue
 from plexapi.server import PlexServer
 from plexapi.utils import download
@@ -205,7 +206,7 @@ async def query(query: str):
     try:
         plex = await asyncio.to_thread(server)
         items = await asyncio.to_thread(find_media, plex, query)
-    except (RequestException, Unauthorized):
+    except (RequestException, PlexApiException, ParseError):
         yield Result(
             title="Error: Unable to connect to Plex server.",
             subtitle="Please check your settings.",
